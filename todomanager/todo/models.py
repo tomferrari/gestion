@@ -65,9 +65,6 @@ class Chambre(models.Model):
     def get_description(self):
         return self.description.replace('\r\n', '\\n')
 
-<<<<<<< HEAD
-
-=======
     roomnumber = models.IntegerField(
         max_length=60,
         verbose_name="NumeroChambre"
@@ -113,4 +110,3 @@ class Reservation(models.Model):
 
     def __str__(self):
         return str(self.user.username)
->>>>>>> d0b02d1e66ba5bc199d869d8773e5fe7f90144fa
