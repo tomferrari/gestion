@@ -39,6 +39,7 @@ class Client(models.Model):
 
 
 class Chambre(models.Model):
+    
     TYPE_CHAMBRE = (
         ('0','Chambre: 1 place'),
         ('1','Chambre: 2 places '),
@@ -48,30 +49,19 @@ class Chambre(models.Model):
         ('5','Chambre: 6 places '),
         ('6','Chambre: 7 places ')
     )
-    description = TextField()
-    num_Chambre = models.CharField(
-        max_length=50,
-        verbose_name="Numero chambre",
-        blank=True,
-        default="/",
-        # validators=[
-        #     RegexValidator(
-        #         regex = '[^[0-9]{10}/00010$]|/',
-        #         message='Doit etre de la forme : \"XX...XX/00010\" ou \"/\"',
-        #         code='invalid_num_com'
-        #         )
-        #     ]
-        )
+    description = models.TextField(
+        max_length=60,
+        verbose_name="DescriptionChambre"
+    )
+
     def get_description(self):
         return self.description.replace('\r\n', '\\n')
 
     roomnumber = models.IntegerField(
-        max_length=60,
         verbose_name="NumeroChambre"
     )
 
     etage = models.IntegerField(
-        max_length=60,
         verbose_name="Etage"
     )
 
@@ -92,19 +82,20 @@ class Hotel(models.Model):
 class Reservation(models.Model):
 
     DateDebut = models.IntegerField(
-        max_length=60,
         verbose_name="DateDebut"
     )
 
     DateFin = models.IntegerField(
-        max_length=60,
         verbose_name="DateFin"
     )
 
-    settings = models.ForeignKey(
-        'Setting',
-        null=True,
-        blank=True,
+    client = models.ForeignKey(
+        Client,
+        verbose_name="Paramêtres"
+    )
+
+    chambre = models.ForeignKey(
+        Chambre,
         verbose_name="Paramêtres"
     )
 
