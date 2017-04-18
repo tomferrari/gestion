@@ -26,9 +26,9 @@ class Client(models.Model):
         verbose_name="mail"
     )
     
-    class Meta:
-        app_label = "todo"
-        ordering = ['-created_at']
+    # class Meta:
+    #     app_label = "todo"
+    #     ordering = ['-created_at']
 
     def __str__(self):
         return str(self.name)
@@ -46,19 +46,47 @@ class Chambre(models.Model):
         ('3','Chambre: 2 places ')
     )
 
-    surname = models.CharField(
+    roomnumber = models.IntegerField(
         max_length=60,
-        verbose_name="Prenom"
+        verbose_name="NumeroChambre"
     )
 
-    phone = models.IntegerField(
+    etage = models.IntegerField(
         max_length=60,
-        verbose_name="Telephone"
+        verbose_name="Etage"
     )
 
-    mail = models.CharField(
+
+    def __str__(self):
+        return str(self.user.username)
+
+class Hotel(models.Model):
+
+    hotelname = models.CharField(
         max_length=60,
-        verbose_name="Mail"
+        verbose_name="Nomhotel"
+    )
+
+    def __str__(self):
+        return str(self.user.username)
+
+class Reservation(models.Model):
+
+    DateDebut = models.IntegerField(
+        max_length=60,
+        verbose_name="DateDebut"
+    )
+
+    DateFin = models.IntegerField(
+        max_length=60,
+        verbose_name="DateFin"
+    )
+
+    settings = models.ForeignKey(
+        'Setting',
+        null=True,
+        blank=True,
+        verbose_name="Paramêtres"
     )
 
     def __str__(self):
