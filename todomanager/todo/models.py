@@ -81,11 +81,11 @@ class Hotel(models.Model):
 
 class Reservation(models.Model):
 
-    DateDebut = models.IntegerField(
+    DateDebut = models.DateTimeField(
         verbose_name="DateDebut"
     )
 
-    DateFin = models.IntegerField(
+    DateFin = models.DateTimeField(
         verbose_name="DateFin"
     )
 
