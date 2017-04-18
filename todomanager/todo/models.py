@@ -30,6 +30,15 @@ class Client(models.Model):
     def __str__(self):
         return str(self.name)
 
-    def get_absolute_url(self):
-        return reverse_lazy('todo:tasks:retrieve', kwargs={'pk': self.id})
+    # def get_absolute_url(self):
+    #     return reverse_lazy('todo:tasks:retrieve', kwargs={'pk': self.id})
     
+
+
+class Chambre(models.Model):
+    TYPE_CHAMBRE = (
+        ('0','Chambre: 1 place'),
+        ('1','Chambre: 2 places '),
+        ('2','Chambre: 2 places '),
+        ('3','Chambre: 2 places ')
+    )
