@@ -14,14 +14,14 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from todo.views import TaskListView, TaskCreateView, TaskRetrieveView, TaskUpdateView, TaskDeleteView
+#from todo.views import TaskListView, TaskCreateView, TaskRetrieveView, TaskUpdateView, TaskDeleteView
 
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', TaskListView.as_view(), name='task-list'),
-    url(r'^create/$', TaskCreateView.as_view(), name='create'),
-    url(r'^(?P<pk>\d+)/$', TaskRetrieveView.as_view(), name='retrieve'),
-    url(r'^(?P<pk>\d+)/update/$', TaskUpdateView.as_view(), name='update'),
-    url(r'^(?P<pk>\d+)/delete/$', TaskDeleteView.as_view(), name='delete'),
+    # url(r'^$', TaskListView.as_view(), name='task-list'),
+    # url(r'^create/$', TaskCreateView.as_view(), name='create'),
+    # url(r'^(?P<pk>\d+)/$', TaskRetrieveView.as_view(), name='retrieve'),
+    # url(r'^(?P<pk>\d+)/update/$', TaskUpdateView.as_view(), name='update'),
+    # url(r'^(?P<pk>\d+)/delete/$', TaskDeleteView.as_view(), name='delete'),
 ]
