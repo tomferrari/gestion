@@ -1,4 +1,4 @@
 env/
 migrations/
 *.pyc
-db.sqlite3
+todomanager/db.sqlite3
