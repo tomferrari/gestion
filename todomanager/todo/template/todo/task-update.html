@@ -1,0 +1,12 @@
+<html>
+    <head>
+        <title>App Todo </title>
+    </head>
+    <body>
+        <h3>Edition d'une tache </h3>
+        <form action="" method="post">{%csrf_token%}
+            {{ form.as_p}}
+            <button class="btn" type="submit">Envoyer</button>
+        </form>
+    </body>
+</html>

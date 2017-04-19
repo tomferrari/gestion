@@ -1,2 +1,4 @@
 env/
+migrations/
 *.pyc
+db.sqlite3
