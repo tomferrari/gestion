@@ -85,12 +85,21 @@ class Hotel(models.Model):
 
 class Reservation(models.Model):
 
+<<<<<<< HEAD
     DateDebut = models.DateField(
         verbose_name="Date Debut"
     )
 
     DateFin = models.DateField(
         verbose_name="Date Fin"
+=======
+    DateDebut = models.DateTimeField(
+        verbose_name="DateDebut"
+    )
+
+    DateFin = models.DateTimeField(
+        verbose_name="DateFin"
+>>>>>>> c97636a583ce97ffe82635943f6e7de3e6882b5e
     )
 
     client = models.ForeignKey(
