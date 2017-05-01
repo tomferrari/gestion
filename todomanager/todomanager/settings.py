@@ -58,7 +58,10 @@ ROOT_URLCONF = 'todomanager.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            BASE_DIR + '/templates/',
+            #os.path.join(BASE_DIR,  'template'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -105,3 +108,11 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + "grappelli/"
+
+
+##TEST CONNEXION
+LOGIN_REDIRECT_URL = '/backoffice/'
+LOGIN_URL = '/'
+#TEMPLATE_DIRS = (
+#    BASE_DIR + '/template/',
+#)

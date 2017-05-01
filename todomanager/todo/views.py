@@ -1,45 +1,33 @@
 from django.shortcuts import render
 
-# -*- coding: utf-8 -*-
-from django import http
-from django.utils import simplejson as json
-from django.utils import timezone
+##TEST CONNEXION
+from django.contrib.auth import authenticate, login, logout
+from django.http import *
+from django.views.generic import TemplateView
+from django.conf import settings
 
-from todo.models import Event
+class LoginView(TemplateView):
+    template_name = 'front/index.html'
 
-def events_json(request):
-    # Get all events - Pas encore terminé
-    events = Event.objects.all()
+    def post(self, request, **kwargs):
+        username = request.POST.get('username', False)
+        password = request.POST.get('password', False)
+        user = authenticate(username=username, password=password)
+        if user is not None and user.is_active:
+            login(request, user)
+            return HttpResponseRedirect(settings.LOGIN_REDIRECT_URL)
+        return render(request, self.template_name)
 
-    # Create the fullcalendar json events list
-    event_list = []
+class LogoutView(TemplateView):
+    template_name = 'front/index.html'
 
-    for event in events:
-        # On récupère les dates dans le bon fuseau horaire
-        event_start = event.start.astimezone(timezone.get_default_timezone())
-        event_end = event.end.astimezone(timezone.get_default_timezone())
+    def get(self, request, **kwargs):
+        logout(request)
+        return render(request, self.template_name)
+#END Modif
 
-        # On décide que si l'événement commence à minuit c'est un
-        # événement sur la journée
-        if event_start.hour == 0 and event_start.minute == 0:
-            allDay = True
-        else:
-            allDay = False
 
-        if not event.is_cancelled:
-            event_list.append({
-                    'id': event.id,
-                    'start': event_start.strftime('%Y-%m-%d %H:%M:%S'),
-                    'end': event_end.strftime('%Y-%m-%d %H:%M:%S'),
-                    'title': event.title,
-                    'allDay': allDay
-                    })
 
-    if len(event_list) == 0:
-        raise http.Http404
-    else:
-        return http.HttpResponse(json.dumps(event_list),
-                                 content_type='application/json')
 
 # Create your views here.
 #from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
