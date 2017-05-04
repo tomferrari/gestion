@@ -1,0 +1,44 @@
+{% load i18n staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <title>{% trans 'Todo list' %}</title>
+        <link rel="stylesheet" href="{% static 'todo/base.css' %}">
+</head>
+
+<body>
+
+        <section id="todoapp">
+                <header id="header">
+                        <h1>{% trans 'Reservations' %}</h1>
+                        <input id="new-todo" placeholder="{% trans 'Which Reservations' %}" autofocus>
+                </header>
+
+                <section id="main">
+                        <ul id="todo-list">
+                            {% for client in object_list %}
+                            <li>
+                                    <div class="view">
+                                    <input class="toggle" type="checkbox">
+                                    <label>{{ client.name }}</label>
+                                    <button class="destroy"></button>
+                                    </div>
+                                    <input class="edit" value="{{ client.name }}">
+                            </li>
+                            {% endfor %}
+                        </ul>
+                </section>
+
+                <footer id="footer">
+                        <span id="todo-count"></span>
+                        <button id="clear-completed">{% trans 'Delete' %}</button>
+                </footer>
+        </section>
+
+        <footer id="info">
+                <p>{% trans 'Double-click to edit a reservation.' %}</p>
+        </footer>
+
+</body>
+</html>
