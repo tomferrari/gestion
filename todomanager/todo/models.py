@@ -4,8 +4,6 @@ from datetime import timedelta
 from django.core.exceptions import ValidationError
 from django.contrib.auth.models import User
 
-
-
 # Create your models here.
     #class Client(models.Model):
     # user = models.OneToOneField(
