@@ -3,8 +3,10 @@ from django.shortcuts import render
 ##TEST CONNEXION
 from django.contrib.auth import authenticate, login, logout
 from django.http import *
-from django.views.generic import TemplateView
+from django.views.generic import TemplateView, ListView
 from django.conf import settings
+#from .models import Reservation
+from todo.models import Reservation
 
 class LoginView(TemplateView):
     template_name = 'front/index.html'
@@ -26,9 +28,10 @@ class LogoutView(TemplateView):
         return render(request, self.template_name)
 #END Modif
 
-
-
-
+class reservationView(TemplateView):
+    template_name = 'backoffice/listsReservations.html'
+    model = Reservation
+    
 # Create your views here.
 #from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 #from todo.models import Task
@@ -65,4 +68,3 @@ class LogoutView(TemplateView):
 #     model = Task
 #     template_name = "todo/task-delete.html"
 #     success_url = '/'
-
