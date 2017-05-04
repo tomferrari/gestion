@@ -12,17 +12,9 @@ Class-based views
 Including another URLconf
     1. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-
-
-#from todo.views import TaskListView, TaskCreateView, TaskRetrieveView, TaskUpdateView, TaskDeleteView
-
-
-
-
-
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from todo.views import LoginView, LogoutView
+from todo.views import LoginView, LogoutView, reservationView
 from rest_framework import routers
 #from eboutique.views import *
 #from erp.views import *
@@ -36,10 +28,9 @@ urlpatterns = patterns('',
     # url(r'^(?P<pk>\d+)/$', TaskRetrieveView.as_view(), name='retrieve'),
     # url(r'^(?P<pk>\d+)/update/$', TaskUpdateView.as_view(), name='update'),
     # url(r'^(?P<pk>\d+)/delete/$', TaskDeleteView.as_view(), name='delete'),
-]
-
     url(r'^$', LoginView.as_view()),
     url(r'^logout/$', LogoutView.as_view()),
     url(r'^backoffice/$', login_required(TemplateView.as_view(template_name='backoffice/index.html'))),
+    url(r'^reservation/$', reservationView.as_view(), name='listsReservations'),
+    #url(r'^$', TasksView.as_view(), name='tasks-list'),
 )
-
